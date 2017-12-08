@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Dash Manager</title>
+      <link type='text/css' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600' rel='stylesheet'>
+      <link type="text/css" href="assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+      <link type="text/css" href="assets/fonts/themify-icons/themify-icons.css" rel="stylesheet">
+      <link type="text/css" href="assets/css/styles.css" rel="stylesheet">
+      <link type="text/css" href="assets/plugins/codeprettifier/prettify.css" rel="stylesheet">
+      <link type="text/css" href="assets/plugins/iCheck/skins/minimal/blue.css" rel="stylesheet">
+      <link rel="shortcut icon" href="assets/icons/favicon.png">
+      <!-- Controller -->
+      <script src="assets/js/jquery.js"></script>
+      <script src="assets/js/angular.min.js"></script>
+      <script src="assets/js/angular-cookies.min.js"></script>
+      <script src="controllers/leaves.js"></script>
+      <!-- CROPPER -->
+      <script src="assets/plugins/cropper/cropper.js"></script>
+      <link type="text/css" href="assets/plugins/cropper/cropper.css" rel="stylesheet">
+      <link type="text/css" href="assets/plugins/clockface/css/clockface.css" rel="stylesheet">
+      <!-- Clockface -->
+      <script>
+         $(window).ready(function() {
+            $('#loading').hide();
+         });      
+      </script>
+      <!-- For Form -->
+      <link type="text/css" href="assets/plugins/bootstrap-tokenfield/css/bootstrap-tokenfield.css" rel="stylesheet">
+      <!-- Tokenfield -->
+   </head>
+   <body class="animated-content" ng-app="leavesApp" ng-controller="leavesController" ng-cloak>
+      <div id="loading"></div>
+      <header id="topnav" class="navbar navbar-default navbar-fixed-top" role="banner">
+         <div class="logo-area">
+            <span id="trigger-sidebar" class="toolbar-trigger toolbar-icon-bg">
+            <a data-toggle="tooltips" data-placement="right" title="Toggle Sidebar">
+            <span class="icon-bg">
+            <i class="ti ti-menu"></i>
+            </span>
+            </a>
+            </span>
+            <a class="navbar-brand" href="index.html" style="width: 125px"></a>
+            <h1 style="font-size: 18px; font-weight: bold; text-transform: uppercase">{{schoolFancyName}}</h1>
+         </div>
+         <ul class="nav navbar-nav toolbar pull-right">
+            <li class="toolbar-icon-bg hidden-xs" id="trigger-fullscreen">
+               <a href="#" class="toggle-fullscreen"><span class="icon-bg"><i class="ti ti-fullscreen"></i></span></i></a>
+            </li>
+            <li class="dropdown toolbar-icon-bg hidden-xs">
+               <a href="#" class="has
+                  tions dropdown-toggle" data-toggle='dropdown'><span class="icon-bg"><i class="ti ti-email"></i></span><span
+                  class="badge badge-deeporange">2</span></a>
+               <div class="dropdown-menu notifications arrow">
+                  <div class="topnav-dropdown-header">
+                     <span>Messages</span>
+                  </div>
+                  <div class="scroll-pane">
+                     <ul class="media-list scroll-content">
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Vincent Keller</strong> <span class="text-gray">‒ Design should be ...</span></h4>
+                                 <span class="notification-time">2 mins ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Frend Pratt</strong> <span class="text-gray">‒ I will start with the ...</span></h4>
+                                 <span class="notification-time">40 mins ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Cynthia Hines</strong> <span class="text-gray">‒ Interior bits are ...</span></h4>
+                                 <span class="notification-time">6 hours ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Robin Horton</strong> <span class="text-gray">‒ Are you even ...</span></h4>
+                                 <span class="notification-time">8 days ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Amanda Torrez</strong> <span class="text-gray">‒ The message is ...</span></h4>
+                                 <span class="notification-time">16 hours ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Khan Farhan</strong> <span class="text-gray">‒ Expected the stuff ...</span></h4>
+                                 <span class="notification-time">2 days ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Will Whedon</strong> <span class="text-gray">‒ The movie of this ...</span></h4>
+                                 <span class="notification-time">4 days ago</span>
+                              </div>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="topnav-dropdown-footer">
+                     <a href="#">See all messages</a>
+                  </div>
+               </div>
+            </li>
+            <li class="dropdown toolbar-icon-bg">
+               <a href="#" class="hasnotifications dropdown-toggle" data-toggle='dropdown'><span class="icon-bg"><i class="ti ti-bell"></i></span><span class="badge badge-deeporange">2</span></a>
+               <div class="dropdown-menu notifications arrow">
+                  <div class="topnav-dropdown-header">
+                     <span>Notifications</span>
+                  </div>
+                  <div class="scroll-pane">
+                     <ul class="media-list scroll-content">
+                        <li class="media notification-success">
+                           <a href="#">
+                              <div class="media-left">
+                                 <span class="notification-icon"><i class="ti ti-check"></i></span>
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading">Update 1.0.4 successfully pushed</h4>
+                                 <span class="notification-time">8 mins ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-info">
+                           <a href="#">
+                              <div class="media-left">
+                                 <span class="notification-icon"><i class="ti ti-check"></i></span>
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading">Update 1.0.3 successfully pushed</h4>
+                                 <span class="notification-time">24 mins ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-teal">
+                           <a href="#">
+                              <div class="media-left">
+                                 <span class="notification-icon"><i class="ti ti-check"></i></span>
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading">Update 1.0.2 successfully pushed</h4>
+                                 <span class="notification-time">16 hours ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-indigo">
+                           <a href="#">
+                              <div class="media-left">
+                                 <span class="notification-icon"><i class="ti ti-check"></i></span>
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading">Update 1.0.1 successfully pushed</h4>
+                                 <span class="notification-time">2 days ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-danger">
+                           <a href="#">
+                              <div class="media-left">
+                                 <span class="notification-icon"><i class="ti ti-arrow-up"></i></span>
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading">Initial Release 1.0</h4>
+                                 <span class="notification-time">4 days ago</span>
+                              </div>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="topnav-dropdown-footer">
+                     <a href="#">See all notifications</a>
+                  </div>
+               </div>
+            </li>
+            <li class="dropdown toolbar-icon-bg">
+               <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
+               <img class="img-circle" src="http://placehold.it/300&text=Placeholder" alt="" />
+               </a>
+               <ul class="dropdown-menu userinfo arrow">
+                  <li><a href="#/"><i class="ti ti-settings"></i><span>Account Settings</span></a></li>
+                  <li><a href="#/" ng-click="logoutNow()"><i class="ti ti-shift-right"></i><span>Sign Out</span></a></li>
+               </ul>
+            </li>
+         </ul>
+      </header>
+      <div id="wrapper">
+         <div id="layout-static">
+            <div class="static-sidebar-wrapper sidebar-default">
+               <div class="static-sidebar">
+                  <div class="sidebar">
+                     <div class="widget stay-on-collapse" id="widget-sidebar">
+                        <nav role="navigation" class="widget-body">
+                           <ul class="acc-menu">
+                              <li><a href="index.html"><i class="ti ti-layout-grid2"></i><span>Dashboard</span><span class="badge badge-teal">2</span></a></li>
+                              <li><a href="events.html"><i class="ti ti-bell"></i><span>Events & Notifications</span></span></a></li>
+                              <li><a href="attendance.html"><i class="ti ti-upload"></i><span>Upload Attendance</span></span></a></li>
+                              <li>
+                                 <a href="javascript:;"><i class="ti ti-reload"></i><span>Workflow</span></a>
+                                 <ul class="acc-menu">
+                                    <li><a href="leaves.html">Leaves</a></li>
+                                    <li><a href="payments.html">Payments</a></li>
+                                    <li><a href="service-requests.html">Requests</a></li>
+                                 </ul>
+                              </li>
+                              <li><a href="inbox.html"><i class="ti ti-email"></i><span>Inbox</span></span></a></li>
+                              <li><a href="calendar.html"><i class="ti ti-calendar"></i><span></span>Calendar</span></a></li>
+                              <li><a href="student-profile.html"><i class="ti ti-search"></i><span>Search Student</span></span></a></li>
+                              <li>
+                                 <a href="javascript:;"><i class="ti ti-settings"></i><span>Tools</span></a>
+                                 <ul class="acc-menu">
+                                    <li><a href="home-works.html">Upload Homeworks</a></li>
+                                    <li><a href="marklists.html">Upload Marklist</a></li>
+                                    <li><a href="messenger.html">Send Message</a></li>
+                                    <li><a href="progress-report.html">Progress Report Generator</a></li>
+                                    <li><a href="tc-generator.html">TC Generator</a></li>
+                                 </ul>
+                              </li>
+                              <li>
+                                 <a href="javascript:;"><i class="ti ti-user"></i><span>Profiles</span></a>
+                                 <ul class="acc-menu">
+                                    <li><a href="student-profile.html">Students</a></li>
+                                    <li><a href="teacher-profile.html">Teachers</a></li>
+                                    <li><a href="admin-profile.html">Administrators</a></li>
+                                 </ul>
+                              </li>
+                              <li>
+                                 <a href="javascript:;"><i class="ti ti-folder"></i><span>Resources</span></a>
+                                 <ul class="acc-menu">
+                                    <li><a href="class-management.html">Classes</a></li>
+                                    <li><a href="courses.html">Courses</a></li>
+                                    <li><a href="time-table.html">Time Tables</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="static-content-wrapper">
+               <div class="static-content">
+                  <div class="page-content">
+                     <ol class="breadcrumb">
+                     </ol>
+                     <div class="container-fluid">
+                        
+                        <div data-widget-group="group1">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <div class="panel panel-teal" style="margin-bottom: 10px">
+                                    <div class="panel-heading" style="background: #2980b9 !important">
+                                       <h2 style="color: #FFF">Leaves History</h2>
+                                       <div class="pull-right hidden-xs" ng-if="isContentFound">
+                                          <strong>{{currentDisplayPage}}</strong> of <strong>{{totalDisplayPages}}</strong>
+                                          <div class="btn-group ml-sm" ng-if="totalDisplayPages != 1">
+                                             <a href="#" class="btn btn-default" ng-if="currentDisplayPage != 1" ng-click="initializeContent(currentDisplayPage-1)"><i class="ti ti-angle-left"></i></a>
+                                             <a href="#" class="btn btn-default" ng-if="currentDisplayPage != totalDisplayPages" ng-click="initializeContent(currentDisplayPage+1)"><i class="ti ti-angle-right"></i></a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="panel-body no-padding">
+                                       <p ng-if="!active_content.length" style="padding: 20px; text-align: center" class="ng-scope">No leaves made so far.</p>
+                                       <!-- Display Events -->
+                                       <table class="table m-n" ng-if="active_content.length && isContentFound">
+                                          <thead>
+                                             <tr style="font-weight: 400; color: #2980b9 !important; background: #ecf0f1">
+                                                <td></td>
+                                                <td>Status</td>
+                                                <td>Student Name</td>
+                                                <td>Class</td>
+                                                <td>Brief</td>
+                                                <td>From</td>
+                                                <td>To</td>
+                                                <td></td>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <tr ng-repeat="content in active_content track by $index">
+                                                <td>#{{((currentDisplayPage-1)*10) + $index + 1}}</td>
+                                                <td><i class="ti ti-thumb-up" ng-show="content.status == 1" aria-hidden="true" style="color: green"></i><i class="ti ti-thumb-down" ng-show="content.status == 2" aria-hidden="true" style="color: red"></i><i class="ti ti-hand-open" ng-show="content.status == 0" aria-hidden="true" style="color: orange"></i></td>
+                                                <td>{{content.studentfName + " " + content.studentlName}}</td>
+                                                <td style="font-weight: bold;">{{content.studentClass + "-" + content.studentDivision }} </td>
+                                                <td>{{content.brief}}</td>
+                                                <td>{{content.leaveFrom}}</td>
+                                                <td>{{content.leaveTo}}</td>
+                                                <td><a ng-click="viewMyContent(content)"><i class="fa fa-eye" aria-hidden="true" style="color: #bdc3c7"></i></a></td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                       <!-- Display Notifications -->
+                                    </div>
+                                 </div>
+                                     
+                              
+                              <!-- View Modal -->
+                              <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div class="modal-dialog">
+                                    <div class="modal-content">
+                                       <div class="modal-body">
+                                          <p style="font-size: 21px; color: #2980b9">{{viewContent.studentfName + " " + viewContent.studentlName}} | {{viewContent.studentClass + "-" + viewContent.studentDivision}}</p>
+                                          <img ng-src="{{viewContent.url}}" style="margin-bottom: 15px" width="100%" ng-if="viewContent.isImg">
+                                          <p style="margin: 0; color: #7f8c8d; font-size: 18px">{{viewContent.brief}}</p>
+                                          <p style="margin: 0; margin-top: 15px; color: #bdc3c7">
+                                             Student Roll No: 
+                                             <tag style="font-weight: bold; color: #2ecc71">{{viewContent.studentRoll}}</tag>
+                                             | Leave From: 
+                                             <tag style="font-weight: bold; color: #2ecc71">{{viewContent.leaveFrom}}</tag>
+                                             | Leave To: 
+                                             <tag style="font-weight: bold; color: #2ecc71">{{viewContent.leaveTo}}</tag>
+                                          </p>
+                                          
+                                       </div>
+                                       <form ng-show="viewContent.status != 1" style="padding:3.2%;" class="form-horizontal" role="form">
+                                           <div class="form-group">
+                                             <div class="col-sm-12">
+                                               <textarea ng-model="comments" type="text" class="form-control" placeholder="Comments"></textarea>
+                                             </div>
+                                           </div>
+                                         </form>
+                                       <div class="modal-footer">
+                                          <p style="margin: 0; float: left; color: #bdc3c7">Created by {{viewContent.createdUser}}</tag></p>
+                                          <button type="button" class="btn btn-success" data-dismiss="modal" ng-if="viewContent.status == 2  || viewContent.status == 0" ng-click="approveLeave(viewContent.id)">Approve</button>
+                                          <button type="button" class="btn btn-danger" data-dismiss="modal" ng-if="viewContent.status == 0" ng-click="rejectLeave(viewContent.id)">Reject</button>
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                       </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                 </div>
+                                 <!-- /.modal-dialog -->
+                              </div>
+                              <!-- /.modal -->
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Container fluid -->
+                  </div>
+                  <!-- Page content -->
+               </div>
+            </div>
+         </div>
+      </div>
+      <script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script>                      <!-- Load jQuery -->
+      <script type="text/javascript" src="assets/js/jqueryui-1.10.3.min.js"></script>                    <!-- Load jQueryUI -->
+      <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>                       <!-- Load Bootstrap -->
+      <script type="text/javascript" src="assets/js/enquire.min.js"></script>                            <!-- Load Enquire -->
+      <script type="text/javascript" src="assets/plugins/form-typeahead/typeahead.bundle.min.js"></script>                    <!-- Typeahead for Autocomplete -->
+      <script type="text/javascript" src="assets/plugins/velocityjs/velocity.min.js"></script>              <!-- Load Velocity for Animated Content -->
+      <script type="text/javascript" src="assets/plugins/velocityjs/velocity.ui.min.js"></script>
+      <script type="text/javascript" src="assets/plugins/wijets/wijets.js"></script>                     <!-- Wijet -->
+      <script type="text/javascript" src="assets/plugins/codeprettifier/prettify.js"></script>           <!-- Code Prettifier  -->
+      <script type="text/javascript" src="assets/plugins/bootstrap-switch/bootstrap-switch.js"></script>       <!-- Swith/Toggle Button -->
+      <script type="text/javascript" src="assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js"></script>  <!-- Bootstrap Tabdrop -->
+      <script type="text/javascript" src="assets/plugins/iCheck/icheck.min.js"></script>                    <!-- iCheck -->
+      <script type="text/javascript" src="assets/plugins/nanoScroller/js/jquery.nanoscroller.min.js"></script> <!-- nano scroller -->
+      <script type="text/javascript" src="assets/js/application.js"></script>
+      <script type="text/javascript" src="assets/demo/demo.js"></script>
+      <script type="text/javascript" src="assets/plugins/form-validation/jquery.validate.min.js"></script>                 <!-- Validate Plugin -->
+      <script type="text/javascript" src="assets/plugins/form-stepy/jquery.stepy.js"></script>                          <!-- Stepy Plugin -->
+      <script type="text/javascript" src="assets/plugins/bootstrap-tokenfield/bootstrap-tokenfield.min.js"></script>          <!-- Tokenfield -->
+      <script type="text/javascript" src="assets/demo/demo-formwizard.js"></script>
+      <script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> <!-- DateTime Picker -->
+      <script type="text/javascript" src="assets/plugins/clockface/js/clockface.js"></script>                         <!-- Clockface -->
+
+   </body>
+</html>

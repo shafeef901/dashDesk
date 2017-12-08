@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Attendance Upload</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="description" content="Avenxo Admin Theme">
+    <meta name="author" content="KaijuThemes">
+
+
+    <script src="assets/js/angular.min.js"></script>
+     <script src="assets/js/angular-cookies.min.js"></script>
+
+    <link type='text/css' href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600' rel='stylesheet'>
+
+    <link type="text/css" href="assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">        <!-- Font Awesome -->
+    <link type="text/css" href="assets/fonts/themify-icons/themify-icons.css" rel="stylesheet">              <!-- Themify Icons -->
+    <link type="text/css" href="assets/css/styles.css" rel="stylesheet">                                     <!-- Core CSS with all styles -->
+
+    <link type="text/css" href="assets/plugins/codeprettifier/prettify.css" rel="stylesheet">                <!-- Code Prettifier -->
+    <link type="text/css" href="assets/plugins/iCheck/skins/minimal/blue.css" rel="stylesheet">              <!-- iCheck -->
+    <script src="controllers/attendance.js"></script>
+
+    <!--[if lt IE 10]>
+        <script type="text/javascript" src="assets/js/media.match.min.js"></script>
+        <script type="text/javascript" src="assets/js/respond.min.js"></script>
+        <script type="text/javascript" src="assets/js/placeholder.min.js"></script>
+    <![endif]-->
+    <!-- The following CSS are included as plugins and can be removed if unused-->
+    
+<link type="text/css" href="assets/plugins/dropzone/css/dropzone.css" rel="stylesheet"> <!-- Dropzone Plugin -->
+
+    </head>
+
+    <body class="animated-content" ng-app="attendanceApp" ng-controller="attendanceController" ng-cloak>
+        
+        <header id="topnav" class="navbar navbar-default navbar-fixed-top" role="banner">
+         <div class="logo-area">
+            <span id="trigger-sidebar" class="toolbar-trigger toolbar-icon-bg">
+            <a data-toggle="tooltips" data-placement="right" title="Toggle Sidebar">
+            <span class="icon-bg">
+            <i class="ti ti-menu"></i>
+            </span>
+            </a>
+            </span>
+            <a class="navbar-brand" href="index.html" style="width: 125px"></a>
+            <h1 style="font-size: 18px; font-weight: bold; text-transform: uppercase">{{schoolFancyName}}</h1>
+         </div>
+         <ul class="nav navbar-nav toolbar pull-right">
+            <li class="toolbar-icon-bg hidden-xs" id="trigger-fullscreen">
+               <a href="#" class="toggle-fullscreen"><span class="icon-bg"><i class="ti ti-fullscreen"></i></span></i></a>
+            </li>
+            <li class="dropdown toolbar-icon-bg hidden-xs">
+               <a href="#" class="has
+                  tions dropdown-toggle" data-toggle='dropdown'><span class="icon-bg"><i class="ti ti-email"></i></span><span
+                  class="badge badge-deeporange">2</span></a>
+               <div class="dropdown-menu notifications arrow">
+                  <div class="topnav-dropdown-header">
+                     <span>Messages</span>
+                  </div>
+                  <div class="scroll-pane">
+                     <ul class="media-list scroll-content">
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Vincent Keller</strong> <span class="text-gray">‒ Design should be ...</span></h4>
+                                 <span class="notification-time">2 mins ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Frend Pratt</strong> <span class="text-gray">‒ I will start with the ...</span></h4>
+                                 <span class="notification-time">40 mins ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Cynthia Hines</strong> <span class="text-gray">‒ Interior bits are ...</span></h4>
+                                 <span class="notification-time">6 hours ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Robin Horton</strong> <span class="text-gray">‒ Are you even ...</span></h4>
+                                 <span class="notification-time">8 days ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Amanda Torrez</strong> <span class="text-gray">‒ The message is ...</span></h4>
+                                 <span class="notification-time">16 hours ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Khan Farhan</strong> <span class="text-gray">‒ Expected the stuff ...</span></h4>
+                                 <span class="notification-time">2 days ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-message">
+                           <a href="#">
+                              <div class="media-left">
+                                 <img class="img-circle avatar" src="http://placehold.it/300&text=Placeholder" alt="" />
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading"><strong>Will Whedon</strong> <span class="text-gray">‒ The movie of this ...</span></h4>
+                                 <span class="notification-time">4 days ago</span>
+                              </div>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="topnav-dropdown-footer">
+                     <a href="#">See all messages</a>
+                  </div>
+               </div>
+            </li>
+            <li class="dropdown toolbar-icon-bg">
+               <a href="#" class="hasnotifications dropdown-toggle" data-toggle='dropdown'><span class="icon-bg"><i class="ti ti-bell"></i></span><span class="badge badge-deeporange">2</span></a>
+               <div class="dropdown-menu notifications arrow">
+                  <div class="topnav-dropdown-header">
+                     <span>Notifications</span>
+                  </div>
+                  <div class="scroll-pane">
+                     <ul class="media-list scroll-content">
+                        <li class="media notification-success">
+                           <a href="#">
+                              <div class="media-left">
+                                 <span class="notification-icon"><i class="ti ti-check"></i></span>
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading">Update 1.0.4 successfully pushed</h4>
+                                 <span class="notification-time">8 mins ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-info">
+                           <a href="#">
+                              <div class="media-left">
+                                 <span class="notification-icon"><i class="ti ti-check"></i></span>
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading">Update 1.0.3 successfully pushed</h4>
+                                 <span class="notification-time">24 mins ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-teal">
+                           <a href="#">
+                              <div class="media-left">
+                                 <span class="notification-icon"><i class="ti ti-check"></i></span>
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading">Update 1.0.2 successfully pushed</h4>
+                                 <span class="notification-time">16 hours ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-indigo">
+                           <a href="#">
+                              <div class="media-left">
+                                 <span class="notification-icon"><i class="ti ti-check"></i></span>
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading">Update 1.0.1 successfully pushed</h4>
+                                 <span class="notification-time">2 days ago</span>
+                              </div>
+                           </a>
+                        </li>
+                        <li class="media notification-danger">
+                           <a href="#">
+                              <div class="media-left">
+                                 <span class="notification-icon"><i class="ti ti-arrow-up"></i></span>
+                              </div>
+                              <div class="media-body">
+                                 <h4 class="notification-heading">Initial Release 1.0</h4>
+                                 <span class="notification-time">4 days ago</span>
+                              </div>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="topnav-dropdown-footer">
+                     <a href="#">See all notifications</a>
+                  </div>
+               </div>
+            </li>
+            <li class="dropdown toolbar-icon-bg">
+               <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
+               <img class="img-circle" src="http://placehold.it/300&text=Placeholder" alt="" />
+               </a>
+               <ul class="dropdown-menu userinfo arrow">
+                  <li><a href="#/"><i class="ti ti-settings"></i><span>Account Settings</span></a></li>
+                  <li><a href="#/" ng-click="logoutNow()"><i class="ti ti-shift-right"></i><span>Sign Out</span></a></li>
+               </ul>
+            </li>
+         </ul>
+      </header>
+
+        <div id="wrapper">
+            <div id="layout-static">
+                <div class="static-sidebar-wrapper sidebar-default">
+                    <div class="static-sidebar">
+                        <div class="sidebar">
+	<div class="widget stay-on-collapse" id="widget-sidebar">
+        <nav role="navigation" class="widget-body">
+                           <ul class="acc-menu">
+                              <li><a href="index.html"><i class="ti ti-layout-grid2"></i><span>Dashboard</span><span class="badge badge-teal">2</span></a></li>
+                              <li><a href="events.html"><i class="ti ti-bell"></i><span>Events & Notifications</span></span></a></li>
+                              <li><a href="attendance.html"><i class="ti ti-upload"></i><span>Upload Attendance</span></span></a></li>
+                              <li>
+                                 <a href="javascript:;"><i class="ti ti-reload"></i><span>Workflow</span></a>
+                                 <ul class="acc-menu">
+                                    <li><a href="leaves.html">Leaves</a></li>
+                                    <li><a href="payments.html">Payments</a></li>
+                                    <li><a href="service-requests.html">Requests</a></li>
+                                 </ul>
+                              </li>
+                              <li><a href="inbox.html"><i class="ti ti-email"></i><span>Inbox</span></span></a></li>
+                              <li><a href="calendar.html"><i class="ti ti-calendar"></i><span></span>Calendar</span></a></li>
+                              <li><a href="student-profile.html"><i class="ti ti-search"></i><span>Search Student</span></span></a></li>
+                              <li>
+                                 <a href="javascript:;"><i class="ti ti-settings"></i><span>Tools</span></a>
+                                 <ul class="acc-menu">
+                                    <li><a href="home-works.html">Upload Homeworks</a></li>
+                                    <li><a href="marklists.html">Upload Marklist</a></li>
+                                    <li><a href="messenger.html">Send Message</a></li>
+                                    <li><a href="progress-report.html">Progress Report Generator</a></li>
+                                    <li><a href="tc-generator.html">TC Generator</a></li>
+                                 </ul>
+                              </li>
+                              <li>
+                                 <a href="javascript:;"><i class="ti ti-user"></i><span>Profiles</span></a>
+                                 <ul class="acc-menu">
+                                    <li><a href="student-profile.html">Students</a></li>
+                                    <li><a href="teacher-profile.html">Teachers</a></li>
+                                    <li><a href="admin-profile.html">Administrators</a></li>
+                                 </ul>
+                              </li>
+                              <li>
+                                 <a href="javascript:;"><i class="ti ti-folder"></i><span>Resources</span></a>
+                                 <ul class="acc-menu">
+                                    <li><a href="class-management.html">Classes</a></li>
+                                    <li><a href="courses.html">Courses</a></li>
+                                    <li><a href="time-table.html">Time Tables</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </nav>
+    </div>
+</div>
+                    </div>
+                </div>
+                <div class="static-content-wrapper">
+                    <div class="static-content">
+                        <div class="page-content">
+                        	<ol class="breadcrumb">
+                     		</ol>
+                            <div class="container-fluid">
+                            	<div class="row">
+                           <div class="col-md-6">
+                              <div class="info-tile tile-green" ng-click="openType('upload')" id="firstTabButton">
+                                 <div class="tile-icon"><i class="ti ti-upload" id="firstIcon"></i></div>
+                                 <div class="tile-body" id="firstCount"><span>Upload File</span></div>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="info-tile tile-green" ng-click="openType('select')" id="secondTabButton">
+                                 <div class="tile-icon"><i class="ti ti-hand-open" id="secondIcon"></i></div>
+                                 <div class="tile-body" id="secondCount"><span>Select Absentees</span></div>
+                              </div>
+                           </div>
+                        </div>
+                                
+
+<div data-widget-group="group1">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default" data-widget='{"draggable": "false"}'>
+                <div class="panel-heading">
+                    <h2>Attendance Upload</h2>
+                    <div class="panel-ctrls" data-actions-container="" data-action-collapse='{"target": ".panel-body"}'></div>
+                    <div class="options">
+
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form action="upload.php" class="dropzone"></form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+	<form>
+		<div class="form-row">
+    		<div class="form-group col-md-3">
+      			<label for="class">Class</label>
+      			<select name="class" class="form-control" id="class" ng-model="attendance.class">
+      				<option value="LKG">LKG</option>
+					<option value="UKG">UKG</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+				</select>
+    		</div>
+    		<div class="form-group col-md-3">
+      			<label for="division">Class</label>
+      			<select name="division" class="form-control" id="division" ng-model="attendance.division">
+      				<option value="A">A</option>
+					<option value="B">B</option>
+					<option value="C">C</option>
+					<option value="D">D</option>
+					<option value="E">E</option>
+					<option value="F">F</option>
+					<option value="G">G</option>
+					<option value="H">H</option>
+					<option value="I">I</option>
+					<option value="J">J</option>
+					<option value="K">K</option>
+					<option value="L">L</option>
+					<option value="M">M</option>
+					<option value="N">N</option>
+				</select>
+    		</div>
+    		<div class="form-group col-md-3">
+				<label for="form-name" class="col-sm-3 control-label">Date</label>
+                 <input type="text" id="attendanceDate" maxlength="10" class="form-control">     <!-- ng-modal -->
+			</div>
+  		</div>
+		<div class="form-group col-md-3">
+				<label></label>
+				<button class="btn btn-primary" ng-click="fetchAttendanceList(attendance)"> Get Student List </button>
+		</div>
+
+		</div>
+
+                            </div> <!-- .container-fluid -->
+                        </div> <!-- #page-content -->
+                    </div>
+                    <footer role="contentinfo">
+    <div class="clearfix">
+        <ul class="list-unstyled list-inline pull-left">
+            <li><h6 style="margin: 0;">&copy; 2015 Avenxo</h6></li>
+        </ul>
+        <button class="pull-right btn btn-link btn-xs hidden-print" id="back-to-top"><i class="ti ti-arrow-up"></i></button>
+    </div>
+</footer>
+
+                </div>
+            </div>
+        </div>
+
+    
+    <!-- Switcher -->
+    <div class="demo-options">
+        <div class="demo-options-icon"><i class="ti ti-paint-bucket"></i></div>
+        <div class="demo-heading">Demo Settings</div>
+
+        <div class="demo-body">
+            <div class="tabular">
+                <div class="tabular-row">
+                    <div class="tabular-cell">Fixed Header</div>
+                    <div class="tabular-cell demo-switches"><input class="bootstrap-switch" type="checkbox" checked data-size="mini" data-on-color="success" data-off-color="default" name="demo-fixedheader" data-on-text="&nbsp;" data-off-text="&nbsp;"></div>
+                </div>
+                <div class="tabular-row">
+                    <div class="tabular-cell">Boxed Layout</div>
+                    <div class="tabular-cell demo-switches"><input class="bootstrap-switch" type="checkbox" data-size="mini" data-on-color="success" data-off-color="default" name="demo-boxedlayout" data-on-text="&nbsp;" data-off-text="&nbsp;"></div>
+                </div>
+                <div class="tabular-row">
+                    <div class="tabular-cell">Collapse Leftbar</div>
+                    <div class="tabular-cell demo-switches"><input class="bootstrap-switch" type="checkbox" data-size="mini" data-on-color="success" data-off-color="default" name="demo-collapseleftbar" data-on-text="&nbsp;" data-off-text="&nbsp;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-body">
+            <div class="option-title">Topnav</div>
+            <ul id="demo-header-color" class="demo-color-list">
+                <li><span class="demo-cyan"></span></li>
+                <li><span class="demo-light-blue"></span></li>
+                <li><span class="demo-blue"></span></li>
+                <li><span class="demo-indigo"></span></li>
+                <li><span class="demo-deep-purple"></span></li> 
+                <li><span class="demo-purple"></span></li> 
+                <li><span class="demo-pink"></span></li> 
+                <li><span class="demo-red"></span></li>
+                <li><span class="demo-teal"></span></li>
+                <li><span class="demo-green"></span></li>
+                <li><span class="demo-light-green"></span></li>
+                <li><span class="demo-lime"></span></li>
+                <li><span class="demo-yellow"></span></li>
+                <li><span class="demo-amber"></span></li>
+                <li><span class="demo-orange"></span></li>               
+                <li><span class="demo-deep-orange"></span></li>
+                <li><span class="demo-midnightblue"></span></li>
+                <li><span class="demo-bluegray"></span></li>
+                <li><span class="demo-bluegraylight"></span></li>
+                <li><span class="demo-black"></span></li> 
+                <li><span class="demo-gray"></span></li> 
+                <li><span class="demo-graylight"></span></li> 
+                <li><span class="demo-default"></span></li>
+                <li><span class="demo-brown"></span></li>
+            </ul>
+        </div>
+
+        <div class="demo-body">
+            <div class="option-title">Sidebar</div>
+            <ul id="demo-sidebar-color" class="demo-color-list">
+                <li><span class="demo-cyan"></span></li>
+                <li><span class="demo-light-blue"></span></li>
+                <li><span class="demo-blue"></span></li>
+                <li><span class="demo-indigo"></span></li>
+                <li><span class="demo-deep-purple"></span></li> 
+                <li><span class="demo-purple"></span></li> 
+                <li><span class="demo-pink"></span></li> 
+                <li><span class="demo-red"></span></li>
+                <li><span class="demo-teal"></span></li>
+                <li><span class="demo-green"></span></li>
+                <li><span class="demo-light-green"></span></li>
+                <li><span class="demo-lime"></span></li>
+                <li><span class="demo-yellow"></span></li>
+                <li><span class="demo-amber"></span></li>
+                <li><span class="demo-orange"></span></li>               
+                <li><span class="demo-deep-orange"></span></li>
+                <li><span class="demo-midnightblue"></span></li>
+                <li><span class="demo-bluegray"></span></li>
+                <li><span class="demo-bluegraylight"></span></li>
+                <li><span class="demo-black"></span></li> 
+                <li><span class="demo-gray"></span></li> 
+                <li><span class="demo-graylight"></span></li> 
+                <li><span class="demo-default"></span></li>
+                <li><span class="demo-brown"></span></li>
+            </ul>
+        </div>
+
+
+
+    </div>
+<!-- /Switcher -->
+    <!-- Load site level scripts -->
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script> -->
+
+
+<script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script> 							<!-- Load jQuery -->
+<script type="text/javascript" src="assets/js/jqueryui-1.10.3.min.js"></script> 							<!-- Load jQueryUI -->
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script> 								<!-- Load Bootstrap -->
+<script type="text/javascript" src="assets/js/enquire.min.js"></script> 									<!-- Load Enquire -->
+
+<script type="text/javascript" src="assets/plugins/velocityjs/velocity.min.js"></script>					<!-- Load Velocity for Animated Content -->
+<script type="text/javascript" src="assets/plugins/velocityjs/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="assets/plugins/wijets/wijets.js"></script>     						<!-- Wijet -->
+
+<script type="text/javascript" src="assets/plugins/codeprettifier/prettify.js"></script> 				<!-- Code Prettifier  -->
+<script type="text/javascript" src="assets/plugins/bootstrap-switch/bootstrap-switch.js"></script> 		<!-- Swith/Toggle Button -->
+
+<script type="text/javascript" src="assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js"></script>  <!-- Bootstrap Tabdrop -->
+
+<script type="text/javascript" src="assets/plugins/iCheck/icheck.min.js"></script>     					<!-- iCheck -->
+
+<script type="text/javascript" src="assets/plugins/nanoScroller/js/jquery.nanoscroller.min.js"></script> <!-- nano scroller -->
+
+<script type="text/javascript" src="assets/js/application.js"></script>
+<script type="text/javascript" src="assets/demo/demo.js"></script>
+<script type="text/javascript" src="assets/demo/demo-switcher.js"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script> <!-- DateTime Picker -->
+<script type="text/javascript" src="assets/plugins/form-daterangepicker/daterangepicker.js"></script>     				<!-- Date Range Picker -->
+<script type="text/javascript" src="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>      			<!-- Datepicker -->
+
+<!-- End loading site level scripts -->
+    
+    <!-- Load page level scripts-->
+    
+<script type="text/javascript" src="assets/plugins/dropzone/dropzone.min.js"></script>   	<!-- Dropzone Plugin -->
+
+    <!-- End loading page level scripts-->
+
+    </body>
+</html>
