@@ -32,7 +32,9 @@ angular.module('dashboardApp', ['ngCookies'])
       $scope.isContentFound = false;
       $scope.sections = [{value: "Higher Secondary", option: "HSS"}, {value: "High School", option: "HS"}, {value: "Upper Primary", option: "UP"}, {value: "Lower Primary", option: "LP"}, {value:"Kindergarten", option: "KG"}];
       $scope.classList = [];
-      
+      $scope.pollOptions = {};
+      $scope.maxPoll = {};
+
       //All Common Functions
       $scope.initHighlights = function(){     
   
@@ -79,7 +81,12 @@ angular.module('dashboardApp', ['ngCookies'])
                 }
                 
               });
-    var data = {};
+    
+
+      }   
+      $scope.initDashboard();
+      $scope.dashboardPolls = function (){
+        var data = {};
     data.token = $cookies.get("dashManager");
      
              $http({
@@ -91,18 +98,25 @@ angular.module('dashboardApp', ['ngCookies'])
               .then(function(response) {
                 console.log("Poll Response Log", response);
                 if(response.data.status){
-              $scope.pollResponses = response.data.pollResponse;
-              $scope.responseCount = response.data.responseCount;
-              $scope.pollTitle = response.data.pollTitle;
-              $scope.pollOptions = response.data.pollOptions;
-              var i=0;
 
-              angular.forEach($scope.pollOptions, function(resp, key){
-                  resp.count = String(response.data.counts[i]);
-                  i++;
-
+              $scope.response = response.data.response;
+              var j=0;
+              angular.forEach($scope.response, function(value, key){
+                  $scope.pollOptions = value.pollOptions;
+                  $scope.maxPoll[j] = $scope.pollOptions[0];
+                  
+                  var i=0;
+                  angular.forEach($scope.pollOptions, function(resp, key){  
+                      resp.count = String(response.data.response[j].counts[i]);
+                      i++;   
+                      if(resp.count > $scope.maxPoll[j]){
+                        $scope.maxPoll[j] = resp.count;
+                      }
+                      console.log(resp);
+                   });
+                  j++;
                });
-
+                                console.log("Max Poll: ", $scope.maxPoll);
               $scope.isPollResponseFound = true;
               }
               else{
@@ -110,10 +124,9 @@ angular.module('dashboardApp', ['ngCookies'])
               }
                 
           });
-
       }
-      
-      $scope.initDashboard();
+
+      $scope.dashboardPolls();
       $scope.getMyClass = function(clss){
           if(clss == null){
             return 'btn-warning';

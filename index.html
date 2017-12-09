@@ -460,10 +460,10 @@
 				<div class="panel-body no-padding">
 					<table class="table browsers m-n">
 						<tbody>
-							<tr>
-								<td>Google Chrome</td>
-								<td class="text-right">43.7%</td>
-								<td class="vam" style="width: 20%;">
+							<tr ng-repeat = "resp in response track by $index">
+								<td>{{resp.pollTitle}} | <span style="font-size: 12px">{{maxPoll[$index].value}}</span></td>
+								<td class="text-right">{{100*maxPoll[$index].count/resp.responseCount}}% </td>
+								<td class="vam" ng-style="{'width': 50*maxPoll[$index].count/resp.responseCount+'%'}">
 									<div class="progress m-n">
 	                                  <div class="progress-bar progress-bar-teal" style="width: 100%"></div>
 	                                </div>
